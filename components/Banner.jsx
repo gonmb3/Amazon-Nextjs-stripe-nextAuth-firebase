@@ -3,9 +3,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Banner = () => {
   const bannerImages = [
-    "https:/links.papareact.com/gi1",
-    "https:/links.papareact.com/6ff",
-    "https:/links.papareact.com/7ma",
+    "/img/banner1.png",
+    "/img/banner2.png",
+    "/img/banner3.png",
   ];
 
   return (
