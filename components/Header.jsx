@@ -6,23 +6,36 @@ import {
   AiOutlineShoppingCart,
 } from "react-icons/ai";
 
+import { useSession, signIn, signOut } from "next-auth/react"
+import Link from "next/link";
+import { useSelector } from 'react-redux';
+
 const Header = () => {
+
+  const {data:session} = useSession()
+
+  const {items} = useSelector(state => state.basket)
+
+
   return (
     <header>
 
       {/* TOP NAV*/}
       <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
-        <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
-          {" "}
+           <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
           {/* logo*/}
-          <Image
-            src="https://links.papareact.com/f90"
-            width={150}
-            height={40}
-            objectFit="contain"
-            className="cursor-pointer"
-          />
+          <Link href="/">
+            <Image
+              src="https://links.papareact.com/f90"
+              width={150}
+              height={40}
+              objectFit="contain"
+              className="cursor-pointer"
+            />
+            </Link>
         </div>
+      
+       
 
         {/* SEARCH*/}
         <div className="hidden bg-yellow-400 hover:bg-yellow-500 sm:flex items-center cursor-pointer h-10 rounded-md flex-grow">
@@ -35,8 +48,16 @@ const Header = () => {
 
         {/* RIGHT*/}
         <div className="flex items-center space-x-4 text-white text-sm mx-6 whitespace-nowrap">
-          <div className=" link ">
-            <p>Hello Pepe</p>
+
+                        {/* SIGN IN  */}
+          <div
+          onClick={()=> !session ? signIn() : signOut()}
+          className="link">
+
+                  <p>
+                    { session ? `Hello, ${session.user.name}` : "Sign In" }
+                </p>
+
             <p className="font-extrabold md:text-sm">Account & Lists</p>
           </div>
 
@@ -45,11 +66,19 @@ const Header = () => {
             <p className="font-extrabold md:text-sm">& Orders</p>
           </div>
 
-          <div className="flex items-center gap-1 link  relative ">
-            <span className="absolute -top-3   -right-3 md:right-10 h-5 w-5 text-center  rounded-full text-black font-bold bg-yellow-400">0</span>
-          <AiOutlineShoppingCart size={25}/> 
+       <Link href="/checkout">  
+         <div className="flex items-center gap-1 link  relative ">
+           
+              
+           
+            <span className="absolute -top-3   -right-3 md:right-10 h-5 w-5 text-center  rounded-full text-black font-bold bg-yellow-400">
+              {items.length}
+            </span>
+
+           <AiOutlineShoppingCart size={25}/> 
             <p className="hidden md:inline font-extrabold mt-1 md:text-sm">Basket</p>
           </div>
+          </Link>
         </div>
       </div>
 

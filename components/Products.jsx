@@ -12,7 +12,7 @@ const Products = ({products}) => {
           } 
 
         {  /* banner */}
-        <img src="http://links.papareact.com/dyz" alt=""  className="md:col-span-full"/>
+        <img src="http://links.papareact.com/dyz" alt=""  className="md:col-span-full mx-auto"/>
         
         <div className="md:col-span-2">
         {
