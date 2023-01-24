@@ -4,13 +4,15 @@ import ReactStars from "react-stars";
 import { useDispatch } from "react-redux";
 import { addToBasket } from "../slices/basketSlice";
 
+import toast from 'react-hot-toast';
+
 const Product = ({ products }) => {
   const { title, id, price, description, category, image } = products;
 
+
   const max_rating = 5;
   const min_rating = 2;
-
-  // rating stars state
+           // rating stars state
   const [ratingStars] = useState(
     Math.floor(Math.random() * (max_rating - min_rating + 1) + min_rating)
   );
@@ -28,6 +30,7 @@ const Product = ({ products }) => {
       image,
     };
     dispatch(addToBasket(product))
+    toast.success(`${title} added to the basket`)
   };
 
   return (
@@ -50,7 +53,7 @@ const Product = ({ products }) => {
       <p className="text-xs my-2 line-clamp-2">{description} </p>
 
       <div className="mb-5">
-        <p>${Math.floor(price)}</p>
+        <p className="font-bold">${price}</p>
       </div>
 
       <div className="flex items-center space-x-2 -mt-5">

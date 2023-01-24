@@ -3,6 +3,7 @@ import Image from "next/image";
 import ReactStars from "react-stars";
 import { useDispatch } from "react-redux";
 import { addToBasket, removeFromBasket } from "../slices/basketSlice";
+import toast from 'react-hot-toast';
 
 const CheckoutProduct = ({ item }) => {
   const { title, id, price, description, category, image,rating } = item;
@@ -28,6 +29,7 @@ const CheckoutProduct = ({ item }) => {
           image,
         };
         dispatch(addToBasket(product))
+        toast.success(`${title} added to the basket`)
       };
         //remove from cart 
       const removeItemFromBasket = () => {
@@ -47,13 +49,13 @@ const CheckoutProduct = ({ item }) => {
 
         <p>{title}</p>
         <div>
-        <ReactStars count={ratingStars} size={24} color1={"#ffd700"} />
+        <ReactStars count={ratingStars} size={20} color1={"#ffd700"} />
         </div>
         <p className="text-xs my-2 line-clamp-3">{description} </p>
 
-        <p>${Math.floor(price)}</p>
+        <p className="font-bold">${price}</p>
 
-        <div className="flex items-center space-x-2 -mt-5">
+      <div className="flex items-center space-x-2 mt-5">
         <img
             loading='lazy'
           className="w-12"
@@ -62,6 +64,7 @@ const CheckoutProduct = ({ item }) => {
         />
         <p className="text-xs text-gray-400">Free Next-day Delivery</p>
       </div>
+      
       </div>
 
     { /* button add and remove */}

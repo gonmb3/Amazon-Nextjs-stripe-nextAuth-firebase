@@ -12,7 +12,10 @@ import { useSelector } from 'react-redux';
 
 const Header = () => {
 
-  const {data:session} = useSession()
+  const {data:session} = useSession();
+
+
+  console.log(session)
 
   const {items} = useSelector(state => state.basket)
 
