@@ -10,12 +10,10 @@ import { useSession, signIn, signOut } from "next-auth/react"
 import Link from "next/link";
 import { useSelector } from 'react-redux';
 
+
 const Header = () => {
 
   const {data:session} = useSession();
-
-
-  console.log(session)
 
   const {items} = useSelector(state => state.basket)
 
