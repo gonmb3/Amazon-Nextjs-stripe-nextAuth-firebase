@@ -4,13 +4,24 @@ import { Provider } from 'react-redux'
 import { store } from './../store/store';
 import  { Toaster } from 'react-hot-toast';
 
+import { persistStore } from 'redux-persist'
+import { PersistGate } from 'redux-persist/integration/react'
+
+
+const persistor = persistStore(store);
+
+
 export default function App({ Component, pageProps, session }) {
   
   return (
     <Provider store={store}>
       <Toaster/>
         <SessionProvider session={session}>
-        <Component {...pageProps} />
+          <PersistGate  persistor={persistor} >
+            <Component {...pageProps} />
+          </PersistGate>
+
+        
     </SessionProvider>
     </Provider>
       

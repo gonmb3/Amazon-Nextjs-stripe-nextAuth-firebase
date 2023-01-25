@@ -6,7 +6,7 @@ import { addToBasket, removeFromBasket } from "../slices/basketSlice";
 import toast from 'react-hot-toast';
 
 const CheckoutProduct = ({ item }) => {
-  const { title, id, price, description, category, image,rating } = item;
+  const { title, id, price, description, category, image } = item;
 
   const max_rating = 5;
   const min_rating = 2;
@@ -35,6 +35,8 @@ const CheckoutProduct = ({ item }) => {
       const removeItemFromBasket = () => {
                 dispatch(removeFromBasket({id}))
       }
+
+
  
   return (
     <div className="grid grid-cols-5">

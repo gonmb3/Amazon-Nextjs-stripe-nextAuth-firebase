@@ -9,7 +9,7 @@ const Home = ({products}) => {
  
 
   return (
-    <Layout title="Home">
+    <Layout title="Home" >
     {  /* banner component (slider)*/}
       <Banner/>
 
