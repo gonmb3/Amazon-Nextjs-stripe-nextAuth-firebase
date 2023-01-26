@@ -23,11 +23,11 @@ export const basketSlice = createSlice({
             }
             state.items = newBasket
         },    
-
+    
     }
  })
 export const selectTotal = state => state.basket.items.reduce((total, item) => total + item.price, 0)
 
 // Action creators are generated for each case reducer function
-export const { addToBasket, removeFromBasket, caculateTotals} = basketSlice.actions;
+export const { addToBasket, removeFromBasket, caculateTotals, } = basketSlice.actions;
 

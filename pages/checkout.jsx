@@ -15,28 +15,21 @@ const checkout = () => {
   const  {items}  = useSelector((state) => state.basket);
   const total = useSelector(selectTotal)
 
-  
   const {data:session} = useSession();
 
   const createCheckoutSession = async () => {
       const stripe = await stripePromise;
-
       //call to create a checkout session...
       const checkoutSession = await axios.post("/api/checkout_sessions", {
         items: items,
         email: session.user.email
       });
-
       //redirect to checkout
       const result = await stripe.redirectToCheckout({
-        sessionId: checkoutSession.data.id
+        sessionId: checkoutSession.data.id       
       })
 
-      if(result.error){
-        alert(result.error)
-      }
-
-  }
+}
 
   return (
     <Layout title="Checkout">
